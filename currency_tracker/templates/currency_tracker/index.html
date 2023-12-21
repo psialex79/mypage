@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <title>Стартовая страница</title>
     <script src="https://unpkg.com/htmx.org"></script>
+
 </head>
 <body>
     <h1>Добро пожаловать на стартовую страницу!</h1>
-    <!-- Ваши HTMX элементы здесь -->
+    
+    <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for rate in rates %} '{{ rate.date }}', {% endfor %}],
+                datasets: [{
+                    label: 'Курс RUB',
+                    data: [{% for rate in rates %} {{ rate.rate }}, {% endfor %}],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
