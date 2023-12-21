@@ -139,7 +139,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/buddy/mypage/debug.log',
+            'filename': '/buddy/mypage/mypage/debug.log',
         },
     },
     'loggers': {
