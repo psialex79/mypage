@@ -3,34 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Стартовая страница</title>
-    <script src="https://unpkg.com/htmx.org"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Добро пожаловать на стартовую страницу!</h1>
-    
-    <canvas id="myChart"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="currencyChart"></canvas>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [{% for rate in rates %} '{{ rate.date }}', {% endfor %}],
-                datasets: [{
-                    label: 'Курс RUB',
-                    data: [{% for rate in rates %} {{ rate.rate }}, {% endfor %}],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
+        var dataLabels = {{ data_labels|safe }};
+        var dataRates = {{ data_rates|safe }};
     </script>
+    <script src="{% static 'js/chart.js' %}"></script>
 </body>
 </html>
