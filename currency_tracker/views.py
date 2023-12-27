@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import CurrencyRate
+from .models import CurrencyRate, CurrencyPurchase
 from .currency_updater import fetch_historical_data
 import json
 
@@ -12,9 +12,11 @@ def get_currency_data():
 
 def index(request):
     data_labels, data_rates = get_currency_data()
+    purchases = get_currency_purchases()
     context = {
         'data_labels': json.dumps(data_labels),
-        'data_rates': json.dumps(data_rates)
+        'data_rates': json.dumps(data_rates),
+        'purchases': purchases
     }
     return render(request, 'currency_tracker/index.html', context)
 
@@ -28,3 +30,6 @@ def currency_data(request):
 def update_currency_rates(request):
     fetch_historical_data()
     return render(request, 'currency_tracker/index.html')
+
+def get_currency_purchases():
+    return CurrencyPurchase.objects.all().order_by('-date')
