@@ -6,14 +6,15 @@
 
 {% block content %}
 <h1>Добро пожаловать на стартовую страницу!</h1>
+<button id="updateButton">Обновить курсы валют</button>
 <canvas id="currencyChart"></canvas>
 {% endblock %}
 
 {% block footer_scripts %}
 {{ block.super }}
 <script src="{% static 'currency_tracker/js/mychart.js' %}"></script>
+<script src="{% static 'currency_tracker/js/updateButton.js' %}"></script>
 {% endblock %}
 
 
-{% comment %} Получать курсы по апи и сохранять в базе для скрипта mychart.js
-Добавить модель покупки валюты и блок для таблицы отображающей все покупки {% endcomment %}
+{% comment %} Добавить модель покупки валюты и блок для таблицы отображающей все покупки {% endcomment %} {% endcomment %}
