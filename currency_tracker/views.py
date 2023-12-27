@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import CurrencyRate
 import json
 
@@ -15,3 +16,10 @@ def index(request):
         'data_rates': json.dumps(data_rates)
     }
     return render(request, 'currency_tracker/index.html', context)
+
+def currency_data(request):
+    data_labels, data_rates = get_currency_data()
+    return JsonResponse({
+        'data_labels': data_labels,
+        'data_rates': data_rates
+    })
