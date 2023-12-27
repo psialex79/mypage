@@ -7,7 +7,7 @@ def fetch_historical_data():
     start_date = date(2023, 1, 1)
     end_date = date.today()
     delta = timedelta(days=1)
-    api_key = 'd23e4cbf56f3359cbfc6bdfa09a99ad1'
+    api_key = '714baec2f2d29eb8f76c12cff4dbcf45'
 
     while start_date <= end_date:
         try:
