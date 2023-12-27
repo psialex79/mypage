@@ -15,7 +15,7 @@ def fetch_historical_data():
             print(f'Данные за {start_date} уже есть в базе данных.')
         except ObjectDoesNotExist:
             formatted_date = start_date.strftime('%Y-%m-%d')
-            url = f'http://api.exchangeratesapi.io/v1/{formatted_date}?access_key={api_key}&symbols=RUB'
+            url = f'http://api.exchangeratesapi.io/v1/{formatted_date}?access_key={api_key}&base=USD&symbols=RUB'
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
