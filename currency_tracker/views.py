@@ -7,7 +7,7 @@ import json
 def get_currency_data():
     rates = CurrencyRate.objects.all().order_by('date')
     data_labels = [rate.date.strftime("%Y-%m-%d") for rate in rates]
-    data_rates = [rate.rate for rate in rates]
+    data_rates = [str(rate.rate) for rate in rates]
     return data_labels, data_rates
 
 def index(request):
