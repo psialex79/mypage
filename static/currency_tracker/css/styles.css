@@ -6,8 +6,8 @@
     max-height: 90vh;
     margin-bottom: 20px;
     background-color: rgba(78, 148, 101, 0.062);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 10px;
+    padding: 10px;
 }
 
 table {
