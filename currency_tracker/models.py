@@ -14,3 +14,12 @@ class CurrencyPurchase(models.Model):
 
     def __str__(self):
         return f"Покупка {self.amount} USD на {self.date}"
+
+    def spent_amount(self):
+        return self.amount * self.rate
+
+    def current_value(self, current_rate):
+        return self.amount * current_rate
+
+    def difference(self, current_rate):
+        return self.current_value(current_rate) - self.spent_amount()

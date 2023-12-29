@@ -10,7 +10,18 @@ def get_currency_data():
     data_rates = [str(rate.rate) for rate in rates]
     return data_labels, data_rates
 
+def get_current_rate():
+    latest_rate = CurrencyRate.objects.order_by('-date').first()
+    return latest_rate.rate if latest_rate else None
+
 def index(request):
+    current_rate = get_current_rate()
+    purchases = CurrencyPurchase.objects.all().order_by('-date')
+    
+    for purchase in purchases:
+        purchase.current_value = purchase.current_value(current_rate)
+        purchase.difference = purchase.difference(current_rate)
+        
     data_labels, data_rates = get_currency_data()
     latest_rate = data_rates[-1] if data_rates else 'Нет данных'
     latest_date = data_labels[-1] if data_labels else 'Нет данных'
