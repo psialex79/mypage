@@ -1,5 +1,5 @@
 .content-block {
-    max-height: 45vh; 
+    max-height: 50%; 
     overflow-y: auto;
 }
 
