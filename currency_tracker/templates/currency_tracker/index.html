@@ -21,12 +21,18 @@
             <th>Дата покупки</th>
             <th>Сумма в долларах</th>
             <th>Курс обмена</th>
+            <th>Потрачено</th>
+            <th>Текущая стоимость</th>
+            <th>Разница</th>
         </tr>
         {% for purchase in purchases %}
         <tr>
             <td>{{ purchase.date }}</td>
             <td>{{ purchase.amount }}</td>
             <td>{{ purchase.rate }}</td>
+            <td>{{ purchase.spent_amount }}</td>
+            <td>{{ purchase.current_value_calculated }}</td>
+            <td>{{ purchase.difference_calculated }}</td>
         </tr>
         {% endfor %}
     </table>

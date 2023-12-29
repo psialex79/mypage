@@ -19,9 +19,9 @@ def index(request):
     purchases = CurrencyPurchase.objects.all().order_by('-date')
     
     for purchase in purchases:
-        purchase.current_value = purchase.current_value(current_rate)
-        purchase.difference = purchase.difference(current_rate)
-        
+        purchase.current_value_calculated = purchase.current_value(current_rate)
+        purchase.difference_calculated = purchase.difference(current_rate)
+
     data_labels, data_rates = get_currency_data()
     latest_rate = data_rates[-1] if data_rates else 'Нет данных'
     latest_date = data_labels[-1] if data_labels else 'Нет данных'
