@@ -17,10 +17,12 @@ def get_current_rate():
 def index(request):
     current_rate = get_current_rate()
     purchases = CurrencyPurchase.objects.all().order_by('-date')
+    total_difference = 0
     
     for purchase in purchases:
         purchase.current_value_calculated = purchase.current_value(current_rate)
         purchase.difference_calculated = purchase.difference(current_rate)
+        total_difference += purchase.difference_calculated
 
     data_labels, data_rates = get_currency_data()
     latest_rate = data_rates[-1] if data_rates else 'Нет данных'
@@ -30,7 +32,8 @@ def index(request):
         'data_rates': json.dumps(data_rates),
         'latest_rate': latest_rate,
         'latest_date': latest_date,
-        'purchases': purchases
+        'purchases': purchases,
+        'total_difference': total_difference
     }
     return render(request, 'currency_tracker/index.html', context)
 
