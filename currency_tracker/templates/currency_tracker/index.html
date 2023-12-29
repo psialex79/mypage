@@ -1,29 +1,32 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block title %}Стартовая страница{% endblock %}
 
 {% block content %}
-<h1>Добро пожаловать на стартовую страницу!</h1>
-<button id="updateButton">Обновить курсы валют</button>
-<canvas id="currencyChart"></canvas>
-<h2>Покупки валюты</h2>
-<table>
-    <tr>
-        <th>Дата покупки</th>
-        <th>Сумма в долларах</th>
-        <th>Курс обмена</th>
-    </tr>
-    {% for purchase in purchases %}
-    <tr>
-        <td>{{ purchase.date }}</td>
-        <td>{{ purchase.amount }}</td>
-        <td>{{ purchase.rate }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="content-block">
+    <h1>Добро пожаловать на стартовую страницу!</h1>
+    <button id="updateButton">Обновить курсы валют</button>
+    <canvas id="currencyChart"></canvas>
+</div>
 
+<div class="content-block">
+    <h2>Покупки валюты</h2>
+    <table>
+        <tr>
+            <th>Дата покупки</th>
+            <th>Сумма в долларах</th>
+            <th>Курс обмена</th>
+        </tr>
+        {% for purchase in purchases %}
+        <tr>
+            <td>{{ purchase.date }}</td>
+            <td>{{ purchase.amount }}</td>
+            <td>{{ purchase.rate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
 
 {% block footer_scripts %}
