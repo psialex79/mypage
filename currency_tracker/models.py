@@ -19,7 +19,13 @@ class CurrencyPurchase(models.Model):
         return self.amount * self.rate
 
     def current_value(self, current_rate):
+        if current_rate is None:
+            return None
         return self.amount * current_rate
 
     def difference(self, current_rate):
+        if current_rate is None:
+            return None
         return self.current_value(current_rate) - self.spent_amount()
+
+
