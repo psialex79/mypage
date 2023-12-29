@@ -1,9 +1,5 @@
 .content-block {
-    max-height: 50%; 
-    overflow-y: auto;
-}
-
-.content-block:first-child {
+    max-height: 90vh;
     margin-bottom: 20px;
 }
 
