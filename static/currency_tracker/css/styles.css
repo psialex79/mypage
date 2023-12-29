@@ -19,3 +19,33 @@ th, td {
     padding: 8px;
     text-align: left;
 }
+
+/* Стили кнопки обновления курсов */
+#updateButton {
+    background-color: #4CAF50; /* Зеленый фон */
+    color: white; /* Белый текст */
+    padding: 10px 20px; /* Внутренние отступы */
+    border: none; /* Убрать стандартную рамку */
+    border-radius: 5px; /* Скругленные углы */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход цвета и трансформации */
+}
+#updateButton:hover {
+    background-color: #45a049; /* Немного темнее зеленый при наведении */
+    transform: scale(1.05); /* Немного увеличить при наведении */
+}
+#updateButton:active {
+    transform: scale(0.95); /* Немного уменьшить при нажатии */
+}
+
+/* Стили записи о актуальном курсе */
+.update-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между кнопкой и текстом */
+}
+#latestRate {
+    font-size: 16px;
+    color: #333;
+}
