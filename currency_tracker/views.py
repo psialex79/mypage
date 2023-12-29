@@ -25,7 +25,6 @@ def index(request):
     data_labels, data_rates = get_currency_data()
     latest_rate = data_rates[-1] if data_rates else 'Нет данных'
     latest_date = data_labels[-1] if data_labels else 'Нет данных'
-    purchases = get_currency_purchases()
     context = {
         'data_labels': json.dumps(data_labels),
         'data_rates': json.dumps(data_rates),
