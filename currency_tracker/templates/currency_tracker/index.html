@@ -3,6 +3,10 @@
 
 {% block title %}Стартовая страница{% endblock %}
 
+{% block head_extras %}
+<link rel="stylesheet" href="{% static 'currency_tracker/css/styles.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="content-block">
     <h1>Добро пожаловать на стартовую страницу!</h1>
