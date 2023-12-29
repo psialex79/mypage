@@ -10,9 +10,11 @@
     {% block head_extras %}{% endblock %}
 </head>
 <body>
-    {% block content %}{% endblock %}
+    <div class="content_container">
+        {% block content %}{% endblock %}
 
-    {% block footer_scripts %}
-    {% endblock %}
+        {% block footer_scripts %}
+        {% endblock %}
+    </div>
 </body>
 </html>
