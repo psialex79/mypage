@@ -19,4 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('currency-tracker/', include('currency_tracker.urls')), # Убедитесь, что это тоже здесь
+    path('log-viewer/', include('log_viewer.urls')),
 ]
