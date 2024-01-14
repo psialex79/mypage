@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <title>Log Viewer</title>
     <script src="https://unpkg.com/htmx.org"></script>
+    <style>
+        .log-entry {
+            white-space: pre-wrap; /* Запросы сохраняют форматирование текста */
+            margin-bottom: 10px;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
     <div hx-get="/log-viewer/" hx-trigger="every 5s">
-        {{ logs }}
+        {% for log_entry in logs.split('\n') %}
+            <div class="log-entry">{{ log_entry }}</div>
+        {% endfor %}
     </div>
 </body>
 </html>
