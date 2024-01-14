@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'currency_tracker',
     'log_viewer',
-    'eduhelperlog',
 ]
 
 MIDDLEWARE = [

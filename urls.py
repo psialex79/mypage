@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('currency-tracker/', include('currency_tracker.urls')),
     path('log-viewer/', include('log_viewer.urls')),
-    path('eduhelperlog/', include('eduhelperlog.urls')),
 ]
