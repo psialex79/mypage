@@ -6,7 +6,7 @@
     <script src="https://unpkg.com/htmx.org"></script>
     <style>
         .log-entry {
-            white-space: pre-wrap; /* Запросы сохраняют форматирование текста */
+            white-space: pre-wrap;
             margin-bottom: 10px;
             padding: 5px;
             border-bottom: 1px solid #ccc;
@@ -16,9 +16,12 @@
 <body>
     <div hx-get="/log-viewer/" hx-trigger="every 5s">
         {% for log_entry in logs %}
-            <div class="log-entry">{{ log_entry }}</div>
+            <div class="log-entry">
+                #{{ forloop.revcounter }}: {{ log_entry }}
+            </div>
         {% endfor %}
     </div>
 </body>
 </html>
+
 

@@ -23,4 +23,6 @@ def log_viewer(request):
         logs = file.readlines() # читаем логи построчно
 
     filtered_logs = filter_russian_text(logs) # фильтруем логи
+    filtered_logs.reverse() # переворачиваем список, чтобы новые сообщения были в начале
     return render(request, 'log_viewer/log_viewer.html', {'logs': filtered_logs})
+
