@@ -15,9 +15,10 @@
 </head>
 <body>
     <div hx-get="/log-viewer/" hx-trigger="every 5s">
-        {% for log_entry in logs.split("\n") %}
+        {% for log_entry in logs %}
             <div class="log-entry">{{ log_entry }}</div>
         {% endfor %}
     </div>
 </body>
 </html>
+
