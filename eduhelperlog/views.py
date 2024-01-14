@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def eduhelperlogpage(request):
+    return render(request, 'eduhelperlog/eduhelperlog.html')
