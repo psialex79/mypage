@@ -1,6 +1,6 @@
 from django.db import models
 
-class User(models.Model):
+class Follower(models.Model):
     telegram_id = models.BigIntegerField(unique=True)
     date_of_exclusion = models.DateField()
 
