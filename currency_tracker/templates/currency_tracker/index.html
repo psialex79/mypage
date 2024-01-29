@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load static %}
 
@@ -43,4 +44,25 @@
 {{ block.super }}
 <script src="{% static 'currency_tracker/js/mychart.js' %}"></script>
 <script src="{% static 'currency_tracker/js/updateButton.js' %}"></script>
+=======
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css_additional %} 
+    <link rel="stylesheet" href=" {% static 'currency_tracker/css/index.css' %}">
+{% endblock %}
+
+{% block title %}
+Добро пожаловать на стартовую страницу!
+{% endblock %}
+
+{% block content %}
+    <canvas id="currencyChart"></canvas>
+    <script>
+        var dataLabels = {{ data_labels|safe }};
+        var dataRates = {{ data_rates|safe }};
+    </script>
+    <script src="{% static 'currency_tracker/js/mychart.js' %}"></script>
+>>>>>>> 5abe11fb1ad1bdfc29c2cecfb0bd62b92f70034d
 {% endblock %}
