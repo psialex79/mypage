@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'currency_tracker',
     'log_viewer',
     'users_checker',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
