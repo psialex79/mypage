@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'currency_tracker',
     'log_viewer',
 =======
-    'currency_tracker'
+    'currency_tracker',
+    'users_checker',
 >>>>>>> 5abe11fb1ad1bdfc29c2cecfb0bd62b92f70034d
 ]
 
