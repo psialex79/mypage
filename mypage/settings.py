@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'currency_tracker',
+    'log_viewer',
+    'users_checker',
 ]
 
 MIDDLEWARE = [
