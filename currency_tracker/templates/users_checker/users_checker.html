@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Manager</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <style>
+        .follower-entry {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        /* Дополнительные стили по необходимости */
+    </style>
+</head>
+<body>
+    <!-- Секция для отображения списка пользователей -->
+    <div id="follower-list" hx-get="/users-checker/" hx-trigger="load">
+        {% for follower in followers %}
+            <div class="follower-entry">
+                ID: {{ follower.telegram_id }}, Date of Exclusion: {{ follower.date_of_exclusion }}
+            </div>
+        {% empty %}
+            <p>No followers found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Форма для добавления новых пользователей -->
+    <form method="post" hx-post="/users-checker/add/" hx-target="#follower-list">
+        {% csrf_token %}
+        <!-- Поля для ввода данных пользователя -->
+        <input type="number" name="telegram_id" placeholder="Telegram ID" required>
+        <input type="date" name="date_of_exclusion" placeholder="Date of Exclusion" required>
+        <button type="submit">Add Follower</button>
+    </form>
+</body>
+</html>
