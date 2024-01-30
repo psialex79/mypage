@@ -23,4 +23,4 @@ def add_follower(request):
     else:
         # Обработка невалидной формы
         followers = Follower.objects.all()
-        return render(request, 'users_checker/user_manager.html', {'form': form, 'users': followers})
+        return render(request, 'users_checker/user_manager.html', {'form': form, 'followers': followers})
