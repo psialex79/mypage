@@ -5,33 +5,31 @@
     <title>User Manager</title>
     <script src="https://unpkg.com/htmx.org"></script>
     <style>
-        .follower-entry {
+        .user-entry {
             margin-bottom: 10px;
             padding: 5px;
             border-bottom: 1px solid #ccc;
         }
-        /* Дополнительные стили по необходимости */
     </style>
 </head>
 <body>
-    <!-- Секция для отображения списка пользователей -->
-    <div id="follower-list" hx-get="/users-checker/" hx-trigger="load">
-        {% for follower in followers %}
-            <div class="follower-entry">
-                ID: {{ follower.telegram_id }}, Date of Exclusion: {{ follower.date_of_exclusion }}
+    <!-- Динамически обновляемый список пользователей -->
+    <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
+        {% for user in users %}
+            <div class="user-entry">
+                ID: {{ user.telegram_id }}, Date of Exclusion: {{ user.date_of_exclusion }}
             </div>
         {% empty %}
-            <p>No followers found.</p>
+            <p>No users found.</p>
         {% endfor %}
     </div>
 
-    <!-- Форма для добавления новых пользователей -->
-    <form method="post" hx-post="/users-checker/add/" hx-target="#follower-list">
+    <!-- Статичная форма для добавления новых пользователей -->
+    <form method="post" action="/users-checker/add/">
         {% csrf_token %}
-        <!-- Поля для ввода данных пользователя -->
         <input type="number" name="telegram_id" placeholder="Telegram ID" required>
         <input type="date" name="date_of_exclusion" placeholder="Date of Exclusion" required>
-        <button type="submit">Add Follower</button>
+        <button type="submit">Add User</button>
     </form>
 </body>
 </html>
