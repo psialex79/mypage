@@ -1,8 +1,8 @@
-# views.py
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from .models import Follower
 from .forms import FollowerForm
+from django.shortcuts import render
 
 @require_POST
 def add_follower(request):
