@@ -19,4 +19,4 @@ def add_follower(request):
 
 def list_followers(request):
     followers = Follower.objects.all()
-    return render(request, 'users_checker/user_manager.html', {'followers': followers})
+    return render(request, 'users_checker/user_manager.html', {'users': followers})
