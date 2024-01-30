@@ -3,6 +3,11 @@ from django.views.decorators.http import require_POST
 from .models import Follower
 from .forms import FollowerForm
 from django.shortcuts import render
+from serializers import FollowerSerializer
+
+class FollowerViewSet(viewsets.ModelViewSet):
+    queryset = Follower.objects.all()
+    serializer_class = FollowerSerializer
 
 @require_POST
 def add_follower(request):
