@@ -1,9 +1,10 @@
+from rest_framework import viewsets
+from .models import Follower
+from .serializers import FollowerSerializer
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
-from .models import Follower
 from .forms import FollowerForm
-from django.shortcuts import render
-from serializers import FollowerSerializer
 
 class FollowerViewSet(viewsets.ModelViewSet):
     queryset = Follower.objects.all()
@@ -18,4 +19,4 @@ def add_follower(request):
 
 def list_followers(request):
     followers = Follower.objects.all()
-    return render(request, 'users_checker/user_manager.html', {'users': followers})
+    return render(request, 'users_checker/user_manager.html', {'followers': followers})
