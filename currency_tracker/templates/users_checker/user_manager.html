@@ -21,7 +21,7 @@
     <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
         {% for user in users %}
             <div class="user-entry bg-light p-2 border rounded">
-                ID: {{ user.telegram_id }}, Date of Exclusion: {{ user.date_of_exclusion }}
+                ID: {{ user.telegram_id }}, Name: {{ user.name }}, Date of Exclusion: {{ user.date_of_exclusion }}, Note: {{ user.note }}
             </div>
         {% empty %}
             <p class="text-muted">No users found.</p>
@@ -38,6 +38,14 @@
         <div class="form-group">
             <label for="date-of-exclusion">Date of Exclusion</label>
             <input type="date" class="form-control" id="date-of-exclusion" name="date_of_exclusion" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="note">Note</label>
+            <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Add User</button>
     </form>
