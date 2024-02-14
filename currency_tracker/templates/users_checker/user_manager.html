@@ -6,21 +6,45 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/htmx.org"></script>
     <style>
+        body {
+            background-color: #FFC0CB; /* Розовый фон */
+            color: #FF69B4; /* Розовый текст */
+        }
         .user-entry {
             margin-bottom: 20px;
             padding: 10px;
+            background-color: #FFF0F5; /* Светло-розовый фон карточек */
+            border: 2px solid #FF69B4; /* Розовая рамка */
+            border-radius: 10px;
+            position: relative;
+        }
+        .user-entry::before {
+            content: "💖"; /* Сердечко перед каждой карточкой */
+            position: absolute;
+            top: -10px;
+            left: -10px;
+        }
+        .user-name { /* Стиль для имени пользователя */
+            display: block;
+            font-size: 20px;
+            color: #D81B60; /* Ярко-розовый */
+            margin-bottom: 10px;
+            font-weight: bold;
         }
         .form-section, .user-list-section {
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 2px solid #FFB6C1; /* Розовая рамка */
             border-radius: 5px;
+            background-color: #FFF5EE; /* Очень светлый розовый фон формы и списка */
         }
-        .form-section {
-            background-color: #f8f9fa;
+        .btn-primary {
+            background-color: #FF69B4; /* Розовая кнопка */
+            border-color: #FF69B4;
         }
-        .user-list-section {
-            background-color: #e9ecef;
+        .btn-primary:hover {
+            background-color: #FFB6C1; /* Светлее при наведении */
+            border-color: #FFB6C1;
         }
     </style>
 </head>
@@ -32,8 +56,8 @@
         <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
             {% for user in users %}
                 <div class="user-entry bg-white p-2 border rounded shadow-sm">
-                    <strong>Telegram ID:</strong> {{ user.telegram_id }},
-                    <strong>Имя:</strong> {{ user.name }},
+                    <span class="user-name">{{ user.name }}</span>
+                    <strong>Telegram ID:</strong> {{ user.telegram_id }}, 
                     <strong>Дата исключения:</strong> {{ user.date_of_exclusion }},
                     <strong>Комментарий:</strong> {{ user.note }}
                 </div>
