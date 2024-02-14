@@ -3,54 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>User Manager</title>
-    <!-- Подключение Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/htmx.org"></script>
     <style>
         .user-entry {
-            margin-bottom: 10px;
-            padding: 5px;
-            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .form-section, .user-list-section {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-section {
+            background-color: #f8f9fa;
+        }
+        .user-list-section {
+            background-color: #e9ecef;
         }
     </style>
 </head>
 <body class="container mt-3">
     <h2 class="mb-3">User Manager</h2>
 
-    <!-- Динамически обновляемый список пользователей -->
-    <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
-        {% for user in users %}
-            <div class="user-entry bg-light p-2 border rounded">
-                ID: {{ user.telegram_id }}, Name: {{ user.name }}, Date of Exclusion: {{ user.date_of_exclusion }}, Note: {{ user.note }}
-            </div>
-        {% empty %}
-            <p class="text-muted">No users found.</p>
-        {% endfor %}
+    <div class="user-list-section">
+        <h4>Users List</h4>
+        <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
+            {% for user in users %}
+                <div class="user-entry bg-white p-2 border rounded shadow-sm">
+                    <strong>ID:</strong> {{ user.telegram_id }},
+                    <strong>Name:</strong> {{ user.name }},
+                    <strong>Date of Exclusion:</strong> {{ user.date_of_exclusion }},
+                    <strong>Note:</strong> {{ user.note }}
+                </div>
+            {% empty %}
+                <p class="text-muted">No users found.</p>
+            {% endfor %}
+        </div>
     </div>
 
-    <!-- Статичная форма для добавления новых пользователей -->
-    <form method="post" action="/users-checker/add/" class="mt-4">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="telegram-id">Telegram ID</label>
-            <input type="number" class="form-control" id="telegram-id" name="telegram_id" placeholder="Telegram ID" required>
-        </div>
-        <div class="form-group">
-            <label for="date-of-exclusion">Date of Exclusion</label>
-            <input type="date" class="form-control" id="date-of-exclusion" name="date_of_exclusion" required>
-        </div>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-        </div>
-        <div class="form-group">
-            <label for="note">Note</label>
-            <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Add User</button>
-    </form>
+    <div class="form-section">
+        <h4>Add New User</h4>
+        <form method="post" action="/users-checker/add/">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="telegram-id">Telegram ID</label>
+                <input type="number" class="form-control" id="telegram-id" name="telegram_id" placeholder="Telegram ID" required>
+            </div>
+            <div class="form-group">
+                <label for="date-of-exclusion">Date of Exclusion</label>
+                <input type="date" class="form-control" id="date-of-exclusion" name="date_of_exclusion" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="note">Note</label>
+                <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+    </div>
 
-    <!-- Подключение Bootstrap JS и Popper.js (необходимо для некоторых компонентов Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
