@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 
 class Follower(models.Model):
@@ -10,8 +10,9 @@ class Follower(models.Model):
     note = models.TextField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if not self.pk:  # Если объект новый
-            # Добавляем два месяца к дате добавления
+        if self.pk is None and not self.date_added:
+            self.date_added = timezone.now().date()
+        if self.date_added:
             self.date_of_exclusion = self.date_added + relativedelta(months=+2)
         super().save(*args, **kwargs)
 
