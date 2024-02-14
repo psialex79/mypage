@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Manager</title>
+    <title>Управление подписчиками канала IZIPIX</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/htmx.org"></script>
     <style>
@@ -25,26 +25,26 @@
     </style>
 </head>
 <body class="container mt-3">
-    <h2 class="mb-3">User Manager</h2>
+    <h2 class="mb-3">Управление подписчиками канала IZIPIX</h2>
 
     <div class="user-list-section">
-        <h4>Users List</h4>
+        <h4>Список пользователей</h4>
         <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
             {% for user in users %}
                 <div class="user-entry bg-white p-2 border rounded shadow-sm">
-                    <strong>ID:</strong> {{ user.telegram_id }},
-                    <strong>Name:</strong> {{ user.name }},
-                    <strong>Date of Exclusion:</strong> {{ user.date_of_exclusion }},
-                    <strong>Note:</strong> {{ user.note }}
+                    <strong>Telegram ID:</strong> {{ user.telegram_id }},
+                    <strong>Имя:</strong> {{ user.name }},
+                    <strong>Дата исключения:</strong> {{ user.date_of_exclusion }},
+                    <strong>Комментарий:</strong> {{ user.note }}
                 </div>
             {% empty %}
-                <p class="text-muted">No users found.</p>
+                <p class="text-muted">Пока нет подписчиков.</p>
             {% endfor %}
         </div>
     </div>
 
     <div class="form-section">
-        <h4>Add New User</h4>
+        <h4>Добавить подписчика</h4>
         <form method="post" action="/users-checker/add/">
             {% csrf_token %}
             <div class="form-group">
@@ -52,18 +52,18 @@
                 <input type="number" class="form-control" id="telegram-id" name="telegram_id" placeholder="Telegram ID" required>
             </div>
             <div class="form-group">
-                <label for="date-of-exclusion">Date of Exclusion</label>
+                <label for="date-of-exclusion">Дата исключения</label>
                 <input type="date" class="form-control" id="date-of-exclusion" name="date_of_exclusion" required>
             </div>
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Имя</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name">
             </div>
             <div class="form-group">
-                <label for="note">Note</label>
+                <label for="note">Комментарий</label>
                 <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Add User</button>
+            <button type="submit" class="btn btn-primary">Добавить подписчика</button>
         </form>
     </div>
 
