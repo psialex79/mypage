@@ -7,44 +7,37 @@
     <script src="https://unpkg.com/htmx.org"></script>
     <style>
         body {
-            background-color: #FFC0CB; /* Розовый фон */
-            color: #FF69B4; /* Розовый текст */
+            background-color: #f0f2f5; /* Светлый фон */
+            color: #333; /* Темно-серый текст */
         }
         .user-entry {
             margin-bottom: 20px;
             padding: 10px;
-            background-color: #FFF0F5; /* Светло-розовый фон карточек */
-            border: 2px solid #FF69B4; /* Розовая рамка */
+            background-color: #ffffff; /* Белый фон карточек */
+            border: 1px solid #ddd; /* Светло-серая рамка */
             border-radius: 10px;
-            position: relative;
-        }
-        .user-entry::before {
-            content: "💖"; /* Сердечко перед каждой карточкой */
-            position: absolute;
-            top: -10px;
-            left: -10px;
         }
         .user-name { /* Стиль для имени пользователя */
             display: block;
-            font-size: 20px;
-            color: #D81B60; /* Ярко-розовый */
+            font-size: 18px;
+            color: #007bff; /* Синий, как цвет ссылок Bootstrap */
             margin-bottom: 10px;
             font-weight: bold;
         }
         .form-section, .user-list-section {
             padding: 20px;
             margin-bottom: 20px;
-            border: 2px solid #FFB6C1; /* Розовая рамка */
+            border: 1px solid #ccc; /* Светло-серая рамка */
             border-radius: 5px;
-            background-color: #FFF5EE; /* Очень светлый розовый фон формы и списка */
+            background-color: #ffffff; /* Белый фон формы и списка */
         }
         .btn-primary {
-            background-color: #FF69B4; /* Розовая кнопка */
-            border-color: #FF69B4;
+            background-color: #007bff; /* Стандартный синий Bootstrap */
+            border-color: #007bff;
         }
         .btn-primary:hover {
-            background-color: #FFB6C1; /* Светлее при наведении */
-            border-color: #FFB6C1;
+            background-color: #0056b3; /* Темнее при наведении */
+            border-color: #0056b3;
         }
     </style>
 </head>
@@ -55,14 +48,14 @@
         <h4>Список пользователей</h4>
         <div id="user-list" hx-get="/users-checker/users" hx-trigger="load">
             {% for user in users %}
-                <div class="user-entry bg-white p-2 border rounded shadow-sm">
+                <div class="user-entry">
                     <span class="user-name">{{ user.name }}</span>
-                    <strong>Telegram ID:</strong> {{ user.telegram_id }}, 
-                    <strong>Дата исключения:</strong> {{ user.date_of_exclusion }},
+                    <strong>Telegram ID:</strong> {{ user.telegram_id }}<br>
+                    <strong>Дата исключения:</strong> {{ user.date_of_exclusion }}<br>
                     <strong>Комментарий:</strong> {{ user.note }}
                 </div>
             {% empty %}
-                <p class="text-muted">Пока нет подписчиков.</p>
+                <p>Пока нет подписчиков.</p>
             {% endfor %}
         </div>
     </div>
