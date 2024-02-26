@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .auth-section {
+            padding: 20px;
+            margin-top: 50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="container">
+    <div class="auth-section">
+        <h2>Вход через Instagram</h2>
+        <a href="{% url 'instagram_login' %}" class="btn btn-primary">Авторизоваться</a>
+    </div>
+</body>
+</html>

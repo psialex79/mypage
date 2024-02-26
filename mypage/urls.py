@@ -5,5 +5,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('currency_tracker.urls')),
     path('log-viewer/', include('log_viewer.urls')),
-    path('users-checker/', include('users_checker.urls')),  
+    path('users-checker/', include('users_checker.urls')),
+    path('instagram-auth/', include('instagram_auth.urls')),
 ]
