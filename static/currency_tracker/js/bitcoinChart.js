@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Предполагается, что у вас есть endpoint `/bitcoin-data/` возвращающий данные для Bitcoin
     fetch('/bitcoin-data/')
     .then(response => response.json())
     .then(data => {
