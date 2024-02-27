@@ -1,6 +1,6 @@
 import requests
 from datetime import date, timedelta
-from .models import CurrencyRate
+from .models import CurrencyRate, BitcoinRate
 from django.core.exceptions import ObjectDoesNotExist
 
 def fetch_historical_data():
@@ -28,6 +28,32 @@ def fetch_historical_data():
                     print(f'Курс USD/RUB за {formatted_date} добавлен в базу данных.')
                 else:
                     print(f'Нет данных о курсе валют для {formatted_date}')
+            else:
+                print(f'Ошибка запроса к API для {formatted_date}: {response.status_code}')
+        start_date += delta
+
+def fetch_historical_btc_usd_data():
+    start_date = date(2023, 1, 1)
+    end_date = date.today()
+    delta = timedelta(days=1)
+
+    while start_date <= end_date:
+        try:
+            BitcoinRate.objects.get(date=start_date)
+            print(f'Данные за {start_date} уже есть в базе данных.')
+        except ObjectDoesNotExist:
+            formatted_date = start_date.strftime('%d-%m-%Y')
+            url = f'https://api.coingecko.com/api/v3/coins/bitcoin/history?date={formatted_date}&localization=false'
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                if 'market_data' in data and 'current_price' in data['market_data'] and 'usd' in data['market_data']['current_price']:
+                    btc_to_usd = data['market_data']['current_price']['usd']
+                    rate = BitcoinRate(date=start_date, rate=btc_to_usd)
+                    rate.save()
+                    print(f'Курс BTC/USD за {formatted_date} добавлен в базу данных.')
+                else:
+                    print(f'Нет данных о курсе BTC-USD для {formatted_date}')
             else:
                 print(f'Ошибка запроса к API для {formatted_date}: {response.status_code}')
         start_date += delta

@@ -37,10 +37,44 @@
         {% endfor %}
     </table>
 </div>
+
+<!-- Новый блок для Bitcoin -->
+<div class="content-block">
+    <h2>Информация о Bitcoin</h2>
+    <button id="updateBitcoinButton">Обновить курсы Bitcoin</button>
+    <span id="latestBitcoinRate">Последний курс Bitcoin: {{ latest_bitcoin_rate }}</span>
+    <canvas id="bitcoinChart"></canvas>
+</div>
+
+<div class="content-block">
+    <h2>Покупки Bitcoin</h2>
+    <table>
+        <tr>
+            <th>Дата покупки</th>
+            <th>Количество Bitcoin</th>
+            <th>Курс обмена</th>
+            <th>Потрачено в USD</th>
+            <th>Текущая стоимость в USD</th>
+            <th>Разница</th>
+        </tr>
+        {% for purchase in bitcoin_purchases %}
+        <tr>
+            <td>{{ purchase.date }}</td>
+            <td>{{ purchase.amount }}</td>
+            <td>{{ purchase.rate }}</td>
+            <td>{{ purchase.spent_amount }}</td>
+            <td>{{ purchase.current_value_calculated }}</td>
+            <td>{{ purchase.difference_calculated }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
 
 {% block footer_scripts %}
 {{ block.super }}
 <script src="{% static 'currency_tracker/js/mychart.js' %}"></script>
 <script src="{% static 'currency_tracker/js/updateButton.js' %}"></script>
+<script src="{% static 'currency_tracker/js/bitcoinChart.js' %}"></script>
+<script src="{% static 'currency_tracker/js/updateButtonBitcoin.js' %}"></script>
 {% endblock %}

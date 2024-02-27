@@ -27,5 +27,31 @@ class CurrencyPurchase(models.Model):
         if current_rate is None:
             return None
         return self.current_value(current_rate) - self.spent_amount()
+    
+class BitcoinRate(models.Model):
+    date = models.DateField(unique=True)
+    rate = models.DecimalField(max_digits=15, decimal_places=8)
 
+    def __str__(self):
+        return f"{self.date} - {self.rate}"
 
+class BitcoinPurchase(models.Model):
+    date = models.DateField(verbose_name="Дата покупки")
+    amount = models.DecimalField(max_digits=10, decimal_places=8, verbose_name="Количество BTC")
+    rate = models.DecimalField(max_digits=15, decimal_places=8, verbose_name="Курс обмена")
+
+    def __str__(self):
+        return f"Покупка {self.amount} BTC на {self.date}"
+
+    def spent_amount_usd(self):
+        return self.amount * self.rate
+
+    def current_value(self, current_rate):
+        if current_rate is None:
+            return None
+        return self.amount * current_rate
+
+    def difference(self, current_rate):
+        if current_rate is None:
+            return None
+        return self.current_value(current_rate) - self.spent_amount_usd()
