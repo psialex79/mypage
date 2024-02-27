@@ -38,7 +38,7 @@ def fetch_historical_btc_usd_data():
     delta = timedelta(days=1)
 
     while start_date <= end_date:
-        time.sleep(10)
+        time.sleep(2)
         try:
             BitcoinRate.objects.get(date=start_date)
             print(f'Данные по BTC/USD за {start_date} уже есть в базе данных.')
