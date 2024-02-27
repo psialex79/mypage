@@ -38,11 +38,11 @@ def fetch_historical_btc_usd_data():
     delta = timedelta(days=1)
 
     while start_date <= end_date:
-        time.sleep(2)
         try:
             BitcoinRate.objects.get(date=start_date)
             print(f'Данные по BTC/USD за {start_date} уже есть в базе данных.')
         except ObjectDoesNotExist:
+            time.sleep(5)
             formatted_date = start_date.strftime('%d-%m-%Y')
             url = f'https://api.coingecko.com/api/v3/coins/bitcoin/history?date={formatted_date}&localization=false'
             response = requests.get(url)
