@@ -1,4 +1,4 @@
-import requests
+import requests, time
 from datetime import date, timedelta
 from .models import CurrencyRate, BitcoinRate
 from django.core.exceptions import ObjectDoesNotExist
@@ -38,6 +38,7 @@ def fetch_historical_btc_usd_data():
     delta = timedelta(days=1)
 
     while start_date <= end_date:
+        time.sleep(1)
         try:
             BitcoinRate.objects.get(date=start_date)
             print(f'Данные за {start_date} уже есть в базе данных.')
